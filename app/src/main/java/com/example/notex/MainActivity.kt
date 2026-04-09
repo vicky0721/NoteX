@@ -18,3 +18,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
+
+/*val colorPicker = findViewById<ColorPickerView>(R.id.colorPickerView)
+
+colorPicker.setColorListener { color, _ ->
+    // use selected color
+}
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val colorPicker = findViewById<ColorPickerView>(R.id.colorPickerView)
+
+        colorPicker.setColorListener { color, _ ->
+            // use selected color
+        }
+    }
+}
+paste inside onview created
+override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    val colorPicker = view.findViewById<ColorPickerView>(R.id.colorPickerView)
+
+    colorPicker.setColorListener { color, _ ->
+        // use selected color
+    }
+}
+
+ */

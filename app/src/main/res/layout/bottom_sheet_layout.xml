@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomSheetParent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomSheetContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/bar"
+            android:layout_width="40dp"
+            android:layout_height="6dp"
+            android:layout_marginTop="6dp"
+            android:background="@color/card_blue"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+        </ImageView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/addColor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@color/blue"
+            android:drawablePadding="10dp"
+            android:text="@string/choose_color"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bar">
+
+        </com.google.android.material.textview.MaterialTextView>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addColor">
+
+
+            <com.skydoves.colorpickerview.ColorPickerView
+                android:id="@+id/colorPicker"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                tools:ignore="MissingClass">
+
+            </com.skydoves.colorpickerview.ColorPickerView>
+
+        </HorizontalScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

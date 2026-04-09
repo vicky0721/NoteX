@@ -2,9 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     kotlin("kapt")
+
 }
 
 android {
+
+    buildFeatures {
+        dataBinding = true
+    }
+
     namespace = "com.example.notex"
     compileSdk = 36
 
@@ -93,15 +99,13 @@ dependencies {
 
     //color picker library
     implementation("com.github.skydoves:colorpickerview:2.2.4")
-   // implementation("com.thebluealliance:spectrum-picker:2.1.1")
+
 
     //implementation("com.yahiaangleo.markdownedittext:markdownedittext:1.0.0")
     implementation("io.noties.markwon:core:4.6.2")
     implementation("io.noties.markwon:ext-strikethrough:4.6.2")
     implementation("io.noties.markwon:ext-tasklist:4.6.2")
     implementation("io.noties.markwon:ext-tables:4.6.2")
-
-
 
 
 }
