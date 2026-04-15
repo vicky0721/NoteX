@@ -19,8 +19,18 @@
         android:name="com.example.notex.fragments.SaveOrUpdate"
         android:label="fragment_save_or_update"
         tools:layout="@layout/fragment_save_or_update" >
+
         <action
-            android:id="@+id/action_saveOrUpdate_to_noteFragment"
-            app:destination="@id/noteFragment" />
+            android:id="@+id/action_noteFragment_to_saveOrUpdate"
+            app:destination="@id/saveOrUpdate" />
+
+        <argument
+            android:name="note"
+            android:defaultValue="@null"
+            app:argType="com.example.notex.model.Note"
+            app:nullable="true">
+
+        </argument>
+
     </fragment>
 </navigation>
