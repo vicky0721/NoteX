@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.notex.R
 import com.example.notex.databinding.FragmentSaveOrDeleteBinding
@@ -16,6 +16,7 @@ import com.example.notex.viewModel.NoteActivityViewModel
 import com.google.android.material.transition.MaterialContainerTransform
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 class SaveOrDeleteFragments : Fragment(R.layout.fragment_save_or_delete) {
 
@@ -27,13 +28,13 @@ class SaveOrDeleteFragments : Fragment(R.layout.fragment_save_or_delete) {
     private val args: SaveOrDeleteFragmentsArgs by navArgs()
 
     private var note: Note? = null
-    private val currentDate = SimpleDateFormat.getInstance().format(Date())
+    private val currentDate = SimpleDateFormat("dd MMMM yyyy, hh:mm a", Locale.getDefault()).format(Date())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val transform = MaterialContainerTransform().apply {
-            drawingViewId = R.id.fragment // make sure this ID exists
+            drawingViewId = R.id.fragment
             scrimColor = android.graphics.Color.TRANSPARENT
             duration = 300L
         }
@@ -46,7 +47,9 @@ class SaveOrDeleteFragments : Fragment(R.layout.fragment_save_or_delete) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentSaveOrDeleteBinding.bind(view)
-        navController = Navigation.findNavController(view)
+        navController = view.findNavController()
+        
+        binding.etNoteContent.setStylesBar(binding.styleBar)
 
         note = args.note
 
@@ -55,15 +58,18 @@ class SaveOrDeleteFragments : Fragment(R.layout.fragment_save_or_delete) {
     }
 
     private fun setupUI() {
+        binding.lastEdited.text = "Created on: $currentDate"
+        
         note?.let {
             binding.etTitle.setText(it.title)
-            binding.etNoteContent.setText(it.content)
+            binding.etNoteContent.renderMD(it.content)
+            binding.lastEdited.text = "Edited on: ${it.date}"
         }
     }
 
     private fun setupListeners() {
 
-        binding.backBtn.setOnClickListener {
+        binding.toolbar.setNavigationOnClickListener {
             requireView().hideKeyboard()
             navController.popBackStack()
         }
@@ -79,13 +85,12 @@ class SaveOrDeleteFragments : Fragment(R.layout.fragment_save_or_delete) {
 
     private fun saveNote() {
         val title = binding.etTitle.text.toString().trim()
-        val content = binding.etNoteContent.text.toString().trim()
+        val content = binding.etNoteContent.getMD().trim()
 
         if (title.isEmpty() || content.isEmpty()) {
             Toast.makeText(requireContext(), "Title or content is empty", Toast.LENGTH_SHORT).show()
             return
-        }
-
+        }                         
         if (note == null) {
             // Create new note
             viewModel.saveNote(
@@ -96,6 +101,7 @@ class SaveOrDeleteFragments : Fragment(R.layout.fragment_save_or_delete) {
                     date = currentDate
                 )
             )
+            Toast.makeText(requireContext(), "Note Saved", Toast.LENGTH_SHORT).show()
         } else {
             // Update existing note
             viewModel.updateNote(
@@ -104,8 +110,9 @@ class SaveOrDeleteFragments : Fragment(R.layout.fragment_save_or_delete) {
                     title = title,
                     content = content,
                     date = currentDate
-                    )
+                )
             )
+            Toast.makeText(requireContext(), "Note Updated", Toast.LENGTH_SHORT).show()
         }
 
         navController.popBackStack()

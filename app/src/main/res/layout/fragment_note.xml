@@ -4,82 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
     </data>
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.NoteFragment">
+        tools:context=".fragments.NoteFragment"
+        android:background="?attr/colorSurface">
 
-        <!-- TODO: Update blank fragment layout -->
         <com.google.android.material.appbar.AppBarLayout
-
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:liftOnScroll="true">
+            android:background="?attr/colorSurface"
+            app:elevation="0dp">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 app:layout_scrollFlags="scroll|enterAlways"
-                android:layout_marginTop="10dp">
+                android:padding="16dp">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <com.google.android.material.textview.MaterialTextView
                         android:id="@+id/app_title"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
-                        android:layout_marginTop="15dp"
                         android:text="My Notes"
-                        android:textColor="@color/black"
-                        android:textSize="30sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="16dp"/>
 
-                    </com.google.android.material.textview.MaterialTextView>
-
-                    <LinearLayout
+                    <com.google.android.material.card.MaterialCardView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="15dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/app_title">
+                        android:layout_height="50dp"
+                        app:cardCornerRadius="25dp"
+                        app:cardElevation="2dp"
+                        app:cardBackgroundColor="?attr/colorSurfaceVariant"
+                        app:strokeWidth="0dp">
 
                         <EditText
                             android:id="@+id/search"
-                            android:layout_width="0dp"
-                            android:layout_height="50dp"
-                            android:layout_weight="3"
-                            android:background="@color/cardview_dark_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
                             android:drawableStart="@drawable/audit_18"
-                            android:drawablePadding="5dp"
+                            android:drawablePadding="12dp"
                             android:hint="@string/search_here"
                             android:imeOptions="actionSearch"
                             android:importantForAutofill="no"
                             android:inputType="textFilter"
-                            android:paddingStart="18dp"
-                            android:paddingTop="4dp"
-                            android:paddingEnd="18dp"
-                            android:paddingBottom="5dp"
-                            android:textSize="16sp">
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:textSize="16sp"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textColorHint="?attr/colorOnSurfaceVariant"/>
 
-                        </EditText>
+                    </com.google.android.material.card.MaterialCardView>
 
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
+                </LinearLayout>
 
             </com.google.android.material.appbar.MaterialToolbar>
 
@@ -87,7 +75,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <ImageView
                 android:id="@+id/noData"
@@ -104,75 +93,28 @@
                 android:id="@+id/rvNote"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
                 android:clipToPadding="false"
-                android:paddingStart="6dp"
-                android:paddingBottom="5dp"
-                android:transitionGroup="true"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/note_item_layout">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/inner_fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:backgroundTint="@color/black"
-                android:elevation="0dp"
-                android:src="@drawable/round_add"
-                android:tint="@color/white"
-                app:borderWidth="0dp"
-                app:fabSize="normal"
-                app:layout_constraintBottom_toBottomOf="@+id/rvNote"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.664"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                app:useCompatPadding="false">
-
-            </com.google.android.material.floatingactionbutton.FloatingActionButton>
-
-            <TextView
-                android:id="@+id/chatfabtext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:paddingStart="0dp"
-                android:paddingEnd="20dp"
-                android:text="@string/add_note"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/inner_fab"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/inner_fab"
-                app:layout_constraintTop_toTopOf="@+id/inner_fab">
-
-            </TextView>
-
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="80dp"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/note_item_layout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/add_note_fab"
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/inner_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="end|bottom"
-            android:focusable="true"
-            android:clickable="true"
-            android:animateLayoutChanges="true"
-            android:orientation="horizontal"
-            android:clipToPadding="false"
-            android:backgroundTint="@color/black"
-            android:layout_margin="16dp">
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:text="@string/add_note"
+            android:textColor="?attr/colorOnPrimary"
+            app:backgroundTint="?attr/colorPrimary"
+            app:icon="@drawable/round_add"
+            app:iconTint="?attr/colorOnPrimary" />
 
-        </LinearLayout>
-
-
-    </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
