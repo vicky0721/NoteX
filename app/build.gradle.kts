@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     kotlin("kapt")
-
+    alias(libs.plugins.navigation.safeargs)
 }
 
 android {
@@ -48,7 +48,7 @@ dependencies {
 
 
     val lifecycle_version = "2.6.1"
-    val room_version = "2.5.1"
+    val room_version = "2.7.0"
     val navigation_version = "2.5.3"
 
 //    implementation("android.legacy:legacy-support-v4:1.0.0")
@@ -63,7 +63,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("androidx.recyclerview:recyclerview:1.3.0")
-    implementation("androidx.room:room-runtime:2.7.0")
 
     //Recycler View animator
     implementation("jp.wasabeef:recyclerview-animators:4.0.2")
@@ -77,7 +76,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-common-java8:2.10.0")
 
     //Room
-    //implementation("androidx.room:room-runtime:$room_version")
+    implementation("androidx.room:room-runtime:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
 
     //kotlin extension and coroutines support for Room
@@ -100,17 +99,13 @@ dependencies {
     implementation("com.github.skydoves:colorpickerview:2.2.4")
 
 
-    //implementation("com.yahiaangleo.markdownedittext:markdownedittext:1.0.0")
     implementation("io.noties.markwon:core:4.6.2")
     implementation("io.noties.markwon:ext-strikethrough:4.6.2")
     implementation("io.noties.markwon:ext-tasklist:4.6.2")
     implementation("io.noties.markwon:ext-tables:4.6.2")
-
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
-
-    implementation ("androidx.room:room-runtime:2.7.0")
-    implementation ("androidx.room:room-ktx:2.7.0")
-    kapt ("androidx.room:room-compiler:2.7.0")
+    // Markdown Editor
+    implementation("io.github.yahiaangelo.markdownedittext:markdownedittext:1.1.3")
 
 }

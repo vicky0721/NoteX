@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/saveOrUpdate"
-        android:name="com.example.notex.fragments.SaveOrUpdate"
+        android:name="com.example.notex.fragments.SaveOrDeleteFragments"
         android:label="fragment_save_or_update"
-        tools:layout="@layout/fragment_save_or_update" >
+        tools:layout="@layout/fragment_save_or_delete" >
 
         <action
             android:id="@+id/action_noteFragment_to_saveOrUpdate"
