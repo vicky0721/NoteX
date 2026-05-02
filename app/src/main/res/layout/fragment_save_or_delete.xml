@@ -45,6 +45,16 @@
                         android:textSize="12sp" />
 
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/deleteNote"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Delete"
+                        android:textColor="?attr/colorError"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/saveNote"
                         style="@style/Widget.Material3.Button.TextButton"
                         android:layout_width="wrap_content"

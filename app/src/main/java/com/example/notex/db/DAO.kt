@@ -12,7 +12,7 @@ import com.example.notex.model.Note
 @Dao
 interface DAO {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addNote(note: Note)
 
     @Update
